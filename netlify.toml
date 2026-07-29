@@ -1,0 +1,35 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/founding-hero-count"
+  to = "/.netlify/functions/founding-hero-count"
+  status = 200
+
+[[redirects]]
+  from = "/api/register-founding-hero"
+  to = "/.netlify/functions/register-founding-hero"
+  status = 200
+
+[[redirects]]
+  from = "/api/founding-hero-health"
+  to = "/.netlify/functions/founding-hero-health"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
